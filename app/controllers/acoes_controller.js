@@ -7,7 +7,6 @@ const AcoesController = {
           try{ 
               const acoes = await Acao.find({})
               return res.status(200).send(acoes)
-
           }
           catch(err){
               return res.status(401).send(err)
