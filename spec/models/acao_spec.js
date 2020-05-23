@@ -106,7 +106,5 @@ describe('Modelo de Ação', () => {
       err = error
     }
     expect(err).toBeDefined();
-  }); 
-
-
+  });
 });  
