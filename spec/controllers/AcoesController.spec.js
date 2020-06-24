@@ -23,6 +23,21 @@ describe("AcoesController", () =>{
     })
   });
 
+describe("GET/acoes.json - Deve retornar uma lista de Acoes ", () => {
+    it("deve retornar o status code de 200", async(done) => {
+      const response = await request.get(`/acoes.json`).set({ 'token': TOKEN})
+      expect(response.status).toBe(200)
+      done();
+    });
+
+    it("deve retornar dados na API", async(done) => {
+       const response = await request.get(`/acoes.json`).set({'token': TOKEN})
+        const itens = response.body;
+        expect(itens[0].nome_empresa).toBe("Itausa Investimentos Itau SA");
+        expect(itens[1].nome_empresa).toBe("Banco Inter SA");
+        done()
+      })
+  });
   describe("POST /acoes.json - Deve retornar se o controller de Acoes (AcoesController)", () => {
     it('cadastrou uma ação', async(done) => {
 
@@ -39,21 +54,7 @@ describe("AcoesController", () =>{
     });
   });
   
-  describe("GET/acoes.json - Deve retornar uma lista de Acoes ", () => {
-    it("deve retornar o status code de 200", async(done) => {
-      const response = await request.get(`/acoes.json`).set({ 'token': TOKEN})
-      expect(response.status).toBe(200)
-      done();
-    });
-
-    it("deve retornar dados na API", async(done) => {
-       const response = await request.get(`/acoes.json`).set({'token': TOKEN})
-        const itens = response.body;
-        expect(itens[0].nome_empresa).toBe("Itausa Investimentos Itau SA");
-        expect(itens[1].nome_empresa).toBe("Banco Inter SA");
-        done()
-      })
-  });
+  
 
   describe("PUT/acoes.json - Deve alterar",() =>{
     it('Deve alterar uma Ação',async(done) =>{
